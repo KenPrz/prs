@@ -28,6 +28,6 @@ class LineItem extends Model
 
     public function lineItemUnit()
     {
-        return $this->belongsTo(LineItemUnit::class, 'line_item_unit_id');
+        return $this->belongsTo(LineItemUnit::class, 'unit_id');
     }
 }

@@ -20,7 +20,7 @@ class LineItemUnitSeeder extends Seeder
             ['name' => 'Piece', 'code' => 'pc'],
             ['name' => 'Dozen', 'code' => 'dz'],
             ['name' => 'Set', 'code' => 'set'],
-        
+
             // Packaging units
             ['name' => 'Box', 'code' => 'bx'],
             ['name' => 'Carton', 'code' => 'ctn'],
@@ -30,30 +30,30 @@ class LineItemUnitSeeder extends Seeder
             ['name' => 'Pallet', 'code' => 'plt'],
             ['name' => 'Bundle', 'code' => 'bndl'],
             ['name' => 'Crate', 'code' => 'crate'],
-        
+
             // Bottles / Cans / Jars
             ['name' => 'Bottle', 'code' => 'btl'],
             ['name' => 'Can', 'code' => 'can'],
             ['name' => 'Jar', 'code' => 'jar'],
             ['name' => 'Flask', 'code' => 'flsk'],
             ['name' => 'Vial', 'code' => 'vl'],
-        
+
             // Sheets / Rolls / Tubes
             ['name' => 'Sheet', 'code' => 'sh'],
             ['name' => 'Roll', 'code' => 'roll'],
             ['name' => 'Tube', 'code' => 'tube'],
-        
+
             // Weight-based (common for raw materials)
             ['name' => 'Gram', 'code' => 'g'],
             ['name' => 'Kilogram', 'code' => 'kg'],
             ['name' => 'Pound', 'code' => 'lb'],
             ['name' => 'Ounce', 'code' => 'oz'],
-        
+
             // Volume-based (liquids)
             ['name' => 'Milliliter', 'code' => 'ml'],
             ['name' => 'Liter', 'code' => 'l'],
             ['name' => 'Gallon', 'code' => 'gal'],
-        
+
             // Misc practical units
             ['name' => 'Piece per Box', 'code' => 'pc/bx'],
             ['name' => 'Piece per Pack', 'code' => 'pc/pk'],

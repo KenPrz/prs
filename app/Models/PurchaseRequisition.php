@@ -5,6 +5,9 @@ namespace App\Models;
 use App\Enums\PurchaseRequisitionStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PurchaseRequisition extends Model
 {
@@ -19,7 +22,7 @@ class PurchaseRequisition extends Model
         'status',
         'created_by',
     ];
-    
+
     /** @var array<string, string> */
     protected $casts = [
         'status' => PurchaseRequisitionStatus::class,
@@ -28,7 +31,7 @@ class PurchaseRequisition extends Model
     /**
      * Get the line items for the purchase requisition.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<LineItem, PurchaseRequisition>
+     * @return HasMany<LineItem, PurchaseRequisition>
      */
     public function lineItems()
     {
@@ -38,7 +41,7 @@ class PurchaseRequisition extends Model
     /**
      * Get the user who created the purchase requisition.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, PurchaseRequisition>
+     * @return BelongsTo<User, PurchaseRequisition>
      */
     public function createdBy()
     {
@@ -48,7 +51,7 @@ class PurchaseRequisition extends Model
     /**
      * Get the requesting departments for the purchase requisition.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Department, PurchaseRequisition>
+     * @return BelongsToMany<Department, PurchaseRequisition>
      */
     public function requestingDepartments()
     {
@@ -58,5 +61,12 @@ class PurchaseRequisition extends Model
             'pr_id',
             'department_id'
         )->using(RequestingDepartment::class);
+    }
+
+    public static function nextNumber(): string
+    {
+        $next = (int) static::query()->max('id') + 1;
+
+        return 'PR-'.str_pad((string) $next, 6, '0', STR_PAD_LEFT);
     }
 }

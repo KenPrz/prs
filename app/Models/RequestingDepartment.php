@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class RequestingDepartment extends Pivot
@@ -16,7 +17,7 @@ class RequestingDepartment extends Pivot
     /**
      * Get the purchase requisition for the requesting department.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<PurchaseRequisition, RequestingDepartment>
+     * @return BelongsTo<PurchaseRequisition, RequestingDepartment>
      */
     public function purchaseRequisition()
     {
@@ -26,7 +27,7 @@ class RequestingDepartment extends Pivot
     /**
      * Get the department for the requesting department.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Department, RequestingDepartment>
+     * @return BelongsTo<Department, RequestingDepartment>
      */
     public function department()
     {

@@ -1,6 +1,6 @@
 @props(['header' => null, 'footer' => null, 'padding' => true])
 
-<div {{ $attributes->merge(['class' => 'bg-card text-card-foreground rounded-xl border border-border shadow-sm overflow-hidden']) }}>
+<div {{ $attributes->merge(['class' => 'bg-card text-card-foreground rounded-xl border border-border shadow-sm']) }}>
     @if ($header)
         <div class="px-6 py-4 border-b border-border">
             {{ $header }}

@@ -21,9 +21,7 @@ class LineItemFactory extends Factory
         $names = json_decode(file_get_contents(database_path('seeders/data/line-items.json')), true);
 
         return [
-            // Lazy: only persists a PR when pr_id is not overridden (e.g. in PurchaseRequisitionSeeder).
             'pr_id' => PurchaseRequisition::factory(),
-            'code' => fake()->unique()->numerify('PR-LI-####'),
             'unit_id' => LineItemUnit::inRandomOrder()->first()->id,
             'name' => fake()->randomElement($names),
             'description' => fake()->sentence(),

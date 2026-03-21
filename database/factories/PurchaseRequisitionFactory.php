@@ -23,7 +23,7 @@ class PurchaseRequisitionFactory extends Factory
             'number' => fake()->unique()->numerify('PR-####'),
             'title' => fake()->sentence(3),
             'description' => fake()->paragraph(),
-            'status' => PurchaseRequisitionStatus::DRAFT->value,
+            'status' => fake()->randomElement(PurchaseRequisitionStatus::cases()),
             'created_by' => User::inRandomOrder()->first()->id,
         ];
     }

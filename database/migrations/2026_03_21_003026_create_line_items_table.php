@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('quantity', 10, 2);
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 10, 2)->nullable();
             $table->timestamps();
 
             $table->unique(['pr_id', 'code']);

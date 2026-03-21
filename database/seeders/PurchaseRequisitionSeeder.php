@@ -15,14 +15,14 @@ class PurchaseRequisitionSeeder extends Seeder
      */
     public function run(): void
     {
-        $pr = PurchaseRequisition::factory()->count(10)->create([
+        $pr = PurchaseRequisition::factory()->count(250)->create([
             'created_by' => User::inRandomOrder()->first()->id,
         ]);
 
         $departments = Department::inRandomOrder()->take(rand(1, 3))->pluck('id');
 
         foreach ($pr as $p) {
-            LineItem::factory()->count(rand(1, 30))->create([
+            LineItem::factory()->count(rand(50, 250))->create([
                 'pr_id' => $p->id,
             ]);
 

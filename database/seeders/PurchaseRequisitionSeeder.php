@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use App\Models\LineItem;
 use App\Models\PurchaseRequisition;
 use App\Models\User;
@@ -18,10 +19,14 @@ class PurchaseRequisitionSeeder extends Seeder
             'created_by' => User::inRandomOrder()->first()->id,
         ]);
 
+        $departments = Department::inRandomOrder()->take(rand(1, 3))->pluck('id');
+
         foreach ($pr as $p) {
             LineItem::factory()->count(rand(1, 30))->create([
                 'pr_id' => $p->id,
             ]);
+
+            $p->requestingDepartments()->sync($departments);
         }
     }
 }

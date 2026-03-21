@@ -1,0 +1,82 @@
+[
+    {
+        "code": "ACC",
+        "name": "Accounting"
+    },
+    {
+        "code": "FIN",
+        "name": "Finance"
+    },
+    {
+        "code": "HR",
+        "name": "Human Resources"
+    },
+    {
+        "code": "IT",
+        "name": "Information Technology"
+    },
+    {
+        "code": "OPS",
+        "name": "Operations"
+    },
+    {
+        "code": "MKT",
+        "name": "Marketing"
+    },
+    {
+        "code": "SALES",
+        "name": "Sales"
+    },
+    {
+        "code": "CS",
+        "name": "Customer Service"
+    },
+    {
+        "code": "ENG",
+        "name": "Engineering"
+    },
+    {
+        "code": "R&D",
+        "name": "Research & Development"
+    },
+    {
+        "code": "PR",
+        "name": "Public Relations"
+    },
+    {
+        "code": "LEGAL",
+        "name": "Legal"
+    },
+    {
+        "code": "QA",
+        "name": "Quality Assurance"
+    },
+    {
+        "code": "PROC",
+        "name": "Procurement"
+    },
+    {
+        "code": "LOG",
+        "name": "Logistics"
+    },
+    {
+        "code": "FAC",
+        "name": "Facilities"
+    },
+    {
+        "code": "ADM",
+        "name": "Administration"
+    },
+    {
+        "code": "TRNG",
+        "name": "Training & Development"
+    },
+    {
+        "code": "AUD",
+        "name": "Audit"
+    },
+    {
+        "code": "PM",
+        "name": "Project Management"
+    }
+]

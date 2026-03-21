@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\PurchaseRequisitionStatus;
-use Database\Factories\PurchaseRequisitionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,5 +43,20 @@ class PurchaseRequisition extends Model
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    /**
+     * Get the requesting departments for the purchase requisition.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Department, PurchaseRequisition>
+     */
+    public function requestingDepartments()
+    {
+        return $this->belongsToMany(
+            Department::class,
+            'requesting_departments',
+            'pr_id',
+            'department_id'
+        )->using(RequestingDepartment::class);
     }
 }

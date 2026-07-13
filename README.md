@@ -16,27 +16,44 @@ A procurement request system: purchase requisitions, purchase orders, receiving 
 
 ## Stack
 
-- **Backend:** Laravel 13 (PHP ≥ 8.3), Pest, Laravel Fortify + Sanctum
+- **Backend:** Laravel 13 (PHP ≥ 8.4), Pest, Laravel Fortify + Sanctum
 - **Frontend:** React 19 + Inertia 2, TypeScript, Tailwind CSS v4, shadcn/ui (Radix)
 - **Packages:** spatie/laravel-permission, spatie/laravel-medialibrary, spatie/laravel-settings, spatie/laravel-activitylog, spatie/browsershot
 - **Document rendering:** a self-hosted [Carbone](https://carbone.io) server (`CARBONE_BASE_URL`, see `compose.yaml`)
 
 ## Setup
 
+### Option A — Local (Composer)
+
 ```bash
-composer setup   # composer install, .env, app key, migrations, npm install, build
+composer setup   # composer install, .env, app key, migrations (SQLite), npm install, build
+composer dev     # server + queue worker + logs + Vite, all in one
 ```
 
-Then start everything (server, queue worker, logs, Vite):
+Document rendering needs a reachable Carbone server (`CARBONE_BASE_URL` in `.env`); everything else works without it.
+
+### Option B — Docker (Laravel Sail via Makefile)
+
+The Sail stack (`compose.yaml`) runs the app, Postgres, Mailpit, and the Carbone renderer — document rendering works out of the box.
 
 ```bash
-composer dev
+composer install       # installs vendor/bin/sail (host PHP needed once)
+cp .env.example .env   # switch DB_CONNECTION to pgsql, DB_HOST=pgsql, set DB_DATABASE/DB_USERNAME/DB_PASSWORD
+make build             # build + start containers
+make key-generate
+make seed-fresh        # migrate:fresh --seed
+make npm-install
+make npm-dev
 ```
 
-Seed reference data (roles/permissions, workflows, document templates, company profile):
+`make help` lists every command (logs, queue, cache, tests, arbitrary artisan/composer/npm).
+
+### Seeding
+
+Reference data (roles/permissions, workflows, document templates, company profile):
 
 ```bash
-php artisan db:seed
+php artisan db:seed    # or: make seed
 ```
 
 ## Testing
@@ -44,6 +61,7 @@ php artisan db:seed
 ```bash
 composer test      # Pint check + full Pest suite
 composer ci:check  # everything CI runs: ESLint, Prettier, TypeScript, Pint, tests
+make test          # same suite inside the Sail container
 ```
 
 Tests run against a local SQLite database (the `testing` file at the repo root, created automatically in CI).

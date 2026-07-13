@@ -32,6 +32,13 @@ jobs:
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
           npm ci
 
+      # ESLint/TS resolve the gitignored Wayfinder output (@/routes, @/actions)
+      - name: Generate Wayfinder Types
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan wayfinder:generate --with-form
+
       - name: Check PHP Style (Pint)
         run: composer lint:check
 

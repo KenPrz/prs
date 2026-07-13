@@ -13,7 +13,7 @@
         sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
 
-    /* Carbon flat geometry: every radius token is 0 so rounded-sm/md/lg/xl
+    /* Flat geometry: every radius token is 0 so rounded-sm/md/lg/xl
        utilities all render square. rounded-full stays for pills/avatars. */
     --radius-xl: 0px;
     --radius-lg: 0px;
@@ -71,9 +71,9 @@
 }
 
 /*
- * IBM Carbon palette (per DESIGN.md)
+ * Indigo Ledger palette
  * ────────────────────────────────────
- * White canvas · #161616 ink · IBM Blue #0f62fe single accent
+ * White canvas · #161616 ink · Indigo #4338ca single accent
  * #f4f4f4 surfaces · #e0e0e0 hairlines · charcoal sidebar anchor
  */
 :root {
@@ -86,8 +86,8 @@
     --popover: #ffffff;
     --popover-foreground: #161616;
 
-    /* IBM Blue — the single brand accent */
-    --primary: #0f62fe;
+    /* Indigo — the single brand accent */
+    --primary: #4338ca;
     --primary-foreground: #ffffff;
 
     --secondary: #f4f4f4;
@@ -99,43 +99,43 @@
     --accent: #f4f4f4;
     --accent-foreground: #161616;
 
-    /* Carbon semantics: red-60 / green-50 / yellow-30 */
-    --destructive: #da1e28;
+    /* Semantics: rose / emerald / amber */
+    --destructive: #be123c;
     --destructive-foreground: #ffffff;
 
-    --success: #24a148;
+    --success: #15803d;
     --success-foreground: #ffffff;
 
-    --warning: #f1c21b;
-    --warning-foreground: #161616;
+    --warning: #b45309;
+    --warning-foreground: #ffffff;
 
     /* 1px hairlines carry hierarchy; no shadows */
     --border: #e0e0e0;
     --input: #e0e0e0;
-    --ring: #0f62fe;
+    --ring: #4338ca;
 
-    /* Carbon dataviz categorical palette */
-    --chart-1: #0f62fe;
-    --chart-2: #6929c4;
-    --chart-3: #005d5d;
-    --chart-4: #9f1853;
-    --chart-5: #fa4d56;
+    /* Dataviz categorical palette, anchored to the indigo primary */
+    --chart-1: #4338ca;
+    --chart-2: #0f766e;
+    --chart-3: #b45309;
+    --chart-4: #be123c;
+    --chart-5: #475569;
 
     --radius: 0px;
 
     /* Sidebar — charcoal inverse-canvas anchor (both modes) */
     --sidebar: #161616;
     --sidebar-foreground: #f4f4f4;
-    --sidebar-primary: #0f62fe;
+    --sidebar-primary: #4338ca;
     --sidebar-primary-foreground: #ffffff;
     --sidebar-accent: #262626;
     --sidebar-accent-foreground: #ffffff;
     --sidebar-border: #393939;
-    --sidebar-ring: #0f62fe;
+    --sidebar-ring: #4338ca;
 }
 
 /*
- * Dark mode — Carbon Gray-100 theme
+ * Dark mode — Gray-100 theme
  */
 .dark {
     --background: #161616;
@@ -147,7 +147,7 @@
     --popover: #262626;
     --popover-foreground: #f4f4f4;
 
-    --primary: #0f62fe;
+    --primary: #4338ca;
     --primary-foreground: #ffffff;
 
     --secondary: #262626;
@@ -159,36 +159,36 @@
     --accent: #333333;
     --accent-foreground: #f4f4f4;
 
-    /* Carbon dark semantics: red-50 / green-40 / yellow-30 */
-    --destructive: #fa4d56;
-    --destructive-foreground: #ffffff;
+    /* Dark semantics: rose / emerald / amber, lightened for contrast */
+    --destructive: #fb7185;
+    --destructive-foreground: #161616;
 
-    --success: #42be65;
+    --success: #4ade80;
     --success-foreground: #161616;
 
-    --warning: #f1c21b;
+    --warning: #fbbf24;
     --warning-foreground: #161616;
 
     --border: #393939;
     --input: #393939;
-    /* blue-40 keeps the focus ring visible on charcoal */
-    --ring: #78a9ff;
+    /* Indigo-400 keeps the focus ring visible on charcoal */
+    --ring: #818cf8;
 
-    --chart-1: #4589ff;
-    --chart-2: #8a3ffc;
-    --chart-3: #009d9a;
-    --chart-4: #ee5396;
-    --chart-5: #fa4d56;
+    --chart-1: #818cf8;
+    --chart-2: #2dd4bf;
+    --chart-3: #fbbf24;
+    --chart-4: #fb7185;
+    --chart-5: #94a3b8;
 
     /* Sidebar — same charcoal anchor as light mode */
     --sidebar: #161616;
     --sidebar-foreground: #f4f4f4;
-    --sidebar-primary: #0f62fe;
+    --sidebar-primary: #4338ca;
     --sidebar-primary-foreground: #ffffff;
     --sidebar-accent: #262626;
     --sidebar-accent-foreground: #ffffff;
     --sidebar-border: #393939;
-    --sidebar-ring: #78a9ff;
+    --sidebar-ring: #818cf8;
 }
 
 @layer base {
@@ -198,7 +198,7 @@
 
     body {
         @apply bg-background text-foreground antialiased;
-        /* Carbon body tracking — a precision detail of the type voice */
+        /* Body tracking — a precision detail of the type voice */
         letter-spacing: 0.16px;
     }
 

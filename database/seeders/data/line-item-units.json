@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Piece",
+        "code": "pc"
+    },
+    {
+        "name": "Unit",
+        "code": "unit"
+    },
+    {
+        "name": "Box",
+        "code": "box"
+    },
+    {
+        "name": "Pack",
+        "code": "pack"
+    },
+    {
+        "name": "Carton",
+        "code": "ctn"
+    },
+    {
+        "name": "Case",
+        "code": "case"
+    },
+    {
+        "name": "Dozen",
+        "code": "doz"
+    },
+    {
+        "name": "Pair",
+        "code": "pair"
+    },
+    {
+        "name": "Set",
+        "code": "set"
+    },
+    {
+        "name": "Roll",
+        "code": "roll"
+    },
+    {
+        "name": "Bundle",
+        "code": "bdl"
+    },
+    {
+        "name": "Kilogram",
+        "code": "kg"
+    },
+    {
+        "name": "Gram",
+        "code": "g"
+    },
+    {
+        "name": "Ton",
+        "code": "ton"
+    },
+    {
+        "name": "Liter",
+        "code": "L"
+    },
+    {
+        "name": "Milliliter",
+        "code": "mL"
+    },
+    {
+        "name": "Gallon",
+        "code": "gal"
+    },
+    {
+        "name": "Meter",
+        "code": "m"
+    },
+    {
+        "name": "Centimeter",
+        "code": "cm"
+    },
+    {
+        "name": "Millimeter",
+        "code": "mm"
+    }
+]

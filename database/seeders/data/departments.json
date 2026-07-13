@@ -1,0 +1,14 @@
+[
+    {
+        "name": "finance",
+        "code": "FIN"
+    },
+    {
+        "name": "operations",
+        "code": "OPS"
+    },
+    {
+        "name": "Logistics",
+        "code": "LOG"
+    }
+]

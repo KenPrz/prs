@@ -1,0 +1,101 @@
+# Production stack. Usage:
+#   docker compose -f compose.prod.yaml up -d
+# Reads runtime configuration from ./.env (see .env.production.example).
+services:
+    caddy:
+        image: caddy:2-alpine
+        restart: unless-stopped
+        ports:
+            - '80:80'
+            - '443:443'
+        environment:
+            APP_DOMAIN: '${APP_DOMAIN}'
+        volumes:
+            - './docker/production/Caddyfile:/etc/caddy/Caddyfile:ro'
+            - 'caddy-data:/data'
+            - 'caddy-config:/config'
+        depends_on:
+            - app
+        networks:
+            - prs
+
+    app:
+        build:
+            context: .
+            dockerfile: docker/production/Dockerfile
+        image: openprs:latest
+        restart: unless-stopped
+        env_file: .env
+        volumes:
+            # Private media (attachments, signatures, final PDFs) must survive deploys.
+            - 'app-storage:/var/www/html/storage/app'
+        depends_on:
+            pgsql:
+                condition: service_healthy
+            carbone:
+                condition: service_started
+        networks:
+            - prs
+
+    # Sends queued mail + in-app notifications (QUEUE_CONNECTION=database).
+    queue:
+        image: openprs:latest
+        restart: unless-stopped
+        command: ['php', 'artisan', 'queue:work', '--tries=3', '--max-time=3600']
+        stop_grace_period: 60s
+        env_file: .env
+        volumes:
+            - 'app-storage:/var/www/html/storage/app'
+        depends_on:
+            pgsql:
+                condition: service_healthy
+        networks:
+            - prs
+
+    # Runs the hourly workflow:escalate SLA command (and anything else scheduled).
+    scheduler:
+        image: openprs:latest
+        restart: unless-stopped
+        command: ['php', 'artisan', 'schedule:work']
+        env_file: .env
+        volumes:
+            - 'app-storage:/var/www/html/storage/app'
+        depends_on:
+            pgsql:
+                condition: service_healthy
+        networks:
+            - prs
+
+    pgsql:
+        image: 'postgres:18-alpine'
+        restart: unless-stopped
+        environment:
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD}'
+        volumes:
+            - 'pgsql-data:/var/lib/postgresql'
+        healthcheck:
+            test: ['CMD', 'pg_isready', '-q', '-d', '${DB_DATABASE}', '-U', '${DB_USERNAME}']
+            retries: 3
+            timeout: 5s
+        networks:
+            - prs
+
+    # DOCX → PDF rendering for all four document types.
+    carbone:
+        image: 'carbone/carbone-ee'
+        platform: linux/amd64
+        restart: unless-stopped
+        networks:
+            - prs
+
+networks:
+    prs:
+        driver: bridge
+
+volumes:
+    pgsql-data:
+    app-storage:
+    caddy-data:
+    caddy-config:

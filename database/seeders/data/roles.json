@@ -1,0 +1,92 @@
+{
+    "employee": [
+      "pr.view",
+      "pr.prepare",
+      "pr.finalize",
+      "pr.cancel",
+      "pr.omit",
+      "po.view",
+      "rr.view"
+    ],
+    "administrator": [
+      "pr.view",
+      "pr.omit",
+      "po.view",
+      "po.prepare",
+      "po.finalize",
+      "po.cancel",
+      "po.omit",
+      "rr.view",
+      "prf.view",
+      "prf.prepare",
+      "prf.cancel"
+    ],
+    "logistics": [
+      "pr.view",
+      "po.view",
+      "po.omit",
+      "rr.view",
+      "rr.prepare",
+      "rr.cancel"
+    ],
+    "finance_manager": [
+      "pr.view",
+      "po.view",
+      "rr.view",
+      "prf.view",
+      "pr.approve",
+      "po.approve",
+      "rr.approve",
+      "prf.approve",
+      "workflow.reassign"
+    ],
+    "general_manager": [
+      "pr.view",
+      "po.view",
+      "prf.view",
+      "pr.approve",
+      "po.approve",
+      "prf.approve",
+      "workflow.reassign"
+    ],
+    "director": [
+      "pr.view",
+      "po.view",
+      "rr.view",
+      "prf.view",
+      "pr.approve",
+      "po.approve",
+      "rr.approve",
+      "prf.approve",
+      "workflow.reassign"
+    ],
+    "president": [
+      "pr.view",
+      "po.view",
+      "prf.view",
+      "pr.approve",
+      "po.approve",
+      "prf.approve",
+      "workflow.reassign"
+    ],
+    "system_maintenance_account": [
+      "prf.view",
+      "config.company_profile.manage"
+    ],
+    "reference_data_admin": [
+      "config.suppliers.manage",
+      "config.departments.manage",
+      "config.item_units.manage",
+      "config.company_profile.manage"
+    ],
+    "access_admin": [
+      "access.users.manage",
+      "access.roles.manage",
+      "access.logs.view"
+    ],
+    "workflow_admin": [
+      "config.workflows.manage",
+      "config.documents.manage"
+    ],
+    "Super Admin": []
+  }

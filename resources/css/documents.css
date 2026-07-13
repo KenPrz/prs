@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:
+        DejaVu Sans,
+        Arial,
+        sans-serif;
+    font-size: 9px;
+    line-height: 1.4;
+    color: #333;
+}
+
+/*
+ * -----------------------------------------------------------------------------
+ * Shared document styles — applies to Purchase Order and Purchase Requisition
+ * Use <div class="doc"> as the root wrapper in any document blade.
+ * -----------------------------------------------------------------------------
+ */
+.doc {
+    padding: 20px 24px;
+    color: #000;
+    font-size: 9px;
+}
+
+/* All document tables share these base rules */
+.doc table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9px;
+}
+.doc td,
+.doc th {
+    border: 1px solid #000;
+    padding: 4px 6px;
+    vertical-align: top;
+}
+.doc th {
+    font-weight: bold;
+    text-align: center;
+    font-size: 8.5px;
+    padding: 4px 4px;
+}
+
+/* Utility */
+.doc .no-border td,
+.doc .no-border th {
+    border: none !important;
+    padding: 2px 0;
+}
+.doc .label {
+    font-weight: bold;
+}
+.doc .text-center {
+    text-align: center;
+}
+.doc .text-right {
+    text-align: right;
+}
+.doc .uppercase {
+    text-transform: uppercase;
+}
+
+/* Header title sizes */
+.doc .text-large {
+    font-size: 13px;
+}
+.doc .text-xlarge {
+    font-size: 16px;
+}
+
+.doc .mb-md {
+    margin-bottom: 10px;
+}
+
+.doc .signature-space {
+    margin-top: 20px;
+    margin-bottom: 6px;
+}
+
+/* PDF Test Marker */
+.pdf-test-marker {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Grid Layouts */
+.doc .grid-2-col {
+    display: table;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.doc .grid-2-col-row {
+    display: table-row;
+}
+.doc .grid-2-col-cell {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+    padding-right: 20px;
+}
+.doc .grid-2-col-cell:last-child {
+    padding-right: 0;
+}
+
+/* Standardized sections */
+.doc .section-title {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+}
+
+/* Empty data placeholder */
+.doc .placeholder-line {
+    display: inline-block;
+    min-height: 1.4em;
+    width: 100%;
+}

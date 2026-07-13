@@ -1,0 +1,58 @@
+[
+  {
+    "f_name": "Shared",
+    "l_name": "Requestor",
+    "email": "request@example.com",
+    "department_code": null,
+    "roles": ["employee"]
+  },
+  {
+    "f_name": "Fiona",
+    "l_name": "Reyes",
+    "email": "finance.manager@example.com",
+    "department_code": "FIN",
+    "roles": ["finance_manager"]
+  },
+  {
+    "f_name": "Gregory",
+    "l_name": "Manalo",
+    "email": "general.manager@example.com",
+    "department_code": "OPS",
+    "roles": ["general_manager"]
+  },
+  {
+    "f_name": "Diana",
+    "l_name": "Cruz",
+    "email": "director@example.com",
+    "department_code": "OPS",
+    "roles": ["director"]
+  },
+  {
+    "f_name": "Paolo",
+    "l_name": "Santos",
+    "email": "president@example.com",
+    "department_code": "OPS",
+    "roles": ["president"]
+  },
+  {
+    "f_name": "Alice",
+    "l_name": "Navarro",
+    "email": "admin@example.com",
+    "department_code": "OPS",
+    "roles": ["administrator"]
+  },
+  {
+    "f_name": "Liam",
+    "l_name": "Torres",
+    "email": "logistics@example.com",
+    "department_code": "LOG",
+    "roles": ["logistics", "system_maintenance_account"]
+  },
+  {
+    "f_name": "Super",
+    "l_name": "User",
+    "email": "superadmin@example.com",
+    "department_code": null,
+    "roles": ["Super Admin"]
+  }
+]

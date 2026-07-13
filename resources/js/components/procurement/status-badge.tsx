@@ -2,6 +2,16 @@ import { Badge } from '@/components/ui/badge';
 
 type StatusVariant = 'default' | 'secondary' | 'destructive' | 'outline';
 
+// Carbon tag tints built from semantic tokens: warning (in review),
+// success (approved/complete), chart-1 blue (in progress),
+// chart-2 purple (allocated). Chart vars flip per theme automatically.
+const TINT = {
+    warning: 'border-warning/60 bg-warning/15 text-foreground',
+    success: 'border-success/40 bg-success/10 text-success',
+    progress: 'border-chart-1/40 bg-chart-1/10 text-chart-1',
+    allocated: 'border-chart-2/40 bg-chart-2/10 text-chart-2',
+};
+
 const statusConfig: Record<
     string,
     { label: string; variant: StatusVariant; className?: string }
@@ -11,20 +21,17 @@ const statusConfig: Record<
     REVIEWING: {
         label: 'Reviewing',
         variant: 'outline',
-        className:
-            'border-amber-200 text-amber-700 dark:border-amber-800 dark:text-amber-400',
+        className: TINT.warning,
     },
     APPROVED: {
         label: 'Approved',
         variant: 'outline',
-        className:
-            'border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-800 dark:bg-teal-950/30 dark:text-teal-400',
+        className: TINT.success,
     },
     READY_FOR_PO: {
         label: 'Ready for PO',
         variant: 'outline',
-        className:
-            'border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-800 dark:bg-teal-950/30 dark:text-teal-400',
+        className: TINT.success,
     },
     REJECTED: { label: 'Rejected', variant: 'destructive' },
     CANCELLED: {
@@ -35,20 +42,17 @@ const statusConfig: Record<
     PARTIALLY_ORDERED: {
         label: 'Partially Ordered',
         variant: 'outline',
-        className:
-            'border-blue-200 text-blue-700 dark:border-blue-800 dark:text-blue-400',
+        className: TINT.progress,
     },
     FULLY_ALLOCATED: {
         label: 'Fully Allocated',
         variant: 'outline',
-        className:
-            'border-indigo-200 text-indigo-700 dark:border-indigo-800 dark:text-indigo-400',
+        className: TINT.allocated,
     },
     FULLY_ORDERED: {
         label: 'Fully Ordered',
         variant: 'outline',
-        className:
-            'border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-800 dark:bg-teal-950/30 dark:text-teal-400',
+        className: TINT.success,
     },
     CLOSED: { label: 'Closed', variant: 'secondary' },
 
@@ -56,46 +60,39 @@ const statusConfig: Record<
     PENDING_APPROVAL: {
         label: 'Pending Approval',
         variant: 'outline',
-        className:
-            'border-amber-200 text-amber-700 dark:border-amber-800 dark:text-amber-400',
+        className: TINT.warning,
     },
     RELEASED: {
         label: 'Ordered',
         variant: 'outline',
-        className:
-            'border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-800 dark:bg-teal-950/30 dark:text-teal-400',
+        className: TINT.success,
     },
     PARTIALLY_RECEIVED: {
         label: 'Partially Received',
         variant: 'outline',
-        className:
-            'border-blue-200 text-blue-700 dark:border-blue-800 dark:text-blue-400',
+        className: TINT.progress,
     },
     FULLY_RECEIVED: {
         label: 'Fully Received',
         variant: 'outline',
-        className:
-            'border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-800 dark:bg-teal-950/30 dark:text-teal-400',
+        className: TINT.success,
     },
 
     // RR statuses
     PENDING: {
         label: 'Pending',
         variant: 'outline',
-        className:
-            'border-amber-200 text-amber-700 dark:border-amber-800 dark:text-amber-400',
+        className: TINT.warning,
     },
     VERIFIED: {
         label: 'Verified',
         variant: 'outline',
-        className:
-            'border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-800 dark:bg-teal-950/30 dark:text-teal-400',
+        className: TINT.success,
     },
     SUBMITTED_TO_ACCOUNTING: {
         label: 'Submitted to Accounting',
         variant: 'outline',
-        className:
-            'border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-800 dark:bg-teal-950/30 dark:text-teal-400',
+        className: TINT.success,
     },
 };
 

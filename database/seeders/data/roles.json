@@ -71,7 +71,8 @@
     ],
     "system_maintenance_account": [
       "prf.view",
-      "config.company_profile.manage"
+      "config.company_profile.manage",
+      "config.settings.manage"
     ],
     "reference_data_admin": [
       "config.suppliers.manage",

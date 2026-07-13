@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { useCurrency } from '@/hooks/use-currency';
 import { formatPHP } from '@/lib/format-currency';
 
 interface SummaryCardProps {
@@ -38,6 +39,8 @@ export function SummaryCard({
     onAction,
     actions,
 }: SummaryCardProps) {
+    const { symbol } = useCurrency();
+
     return (
         <Card className="bg-card/50">
             <CardHeader>
@@ -75,7 +78,7 @@ export function SummaryCard({
                                 Net Amount
                             </span>
                             <span className="font-medium text-foreground">
-                                {formatPHP(netAmount)}
+                                {formatPHP(netAmount, symbol)}
                             </span>
                         </div>
                     )}
@@ -85,7 +88,7 @@ export function SummaryCard({
                                 VAT Amount
                             </span>
                             <span className="font-medium text-foreground">
-                                {formatPHP(vatAmount)}
+                                {formatPHP(vatAmount, symbol)}
                             </span>
                         </div>
                     )}
@@ -94,7 +97,7 @@ export function SummaryCard({
                             Total Expected Amount
                         </span>
                         <span className="text-lg font-bold text-foreground">
-                            {formatPHP(totalAmount)}
+                            {formatPHP(totalAmount, symbol)}
                         </span>
                     </div>
                 </div>

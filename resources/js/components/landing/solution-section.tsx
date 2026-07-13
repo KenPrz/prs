@@ -42,7 +42,7 @@ export function SolutionSection() {
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
                         {mainChain.map((stage, i) => (
                             <div key={stage.number} className="relative">
-                                <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
+                                <div className="rounded-lg border border-border bg-card p-6">
                                     <div className="mb-4 flex items-center gap-3">
                                         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
                                             {stage.number}
@@ -76,7 +76,7 @@ export function SolutionSection() {
                         Independent workflow
                     </p>
                     <div className="max-w-sm">
-                        <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
+                        <div className="rounded-lg border border-border bg-card p-6">
                             <div className="mb-4 flex items-center gap-3">
                                 <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs font-medium">
                                     PRF

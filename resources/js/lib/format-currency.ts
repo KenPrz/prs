@@ -5,6 +5,6 @@ export function formatCurrency(amount: number | string): string {
     });
 }
 
-export function formatPHP(amount: number | string): string {
-    return `₱${formatCurrency(amount)}`;
+export function formatPHP(amount: number | string, symbol = '₱'): string {
+    return `${symbol}${formatCurrency(amount)}`;
 }

@@ -2,6 +2,7 @@
 
 use App\Models\AccessLog;
 use App\Models\User;
+use App\Settings\GeneralSettings;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
@@ -81,7 +82,7 @@ it('shows filtered access logs to a permitted user', function () {
 });
 
 it('prunes rows older than the retention window but keeps fresh ones', function () {
-    config()->set('access-log.retention_days', 180);
+    GeneralSettings::fake(['access_log_retention_days' => 180]);
 
     $old = AccessLog::create(['path' => 'old', 'created_at' => now()->subDays(181)]);
     $fresh = AccessLog::create(['path' => 'fresh', 'created_at' => now()->subDays(179)]);

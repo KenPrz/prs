@@ -6,7 +6,8 @@
 const PERMISSION_DESCRIPTIONS: Record<string, string> = {
     'pr.view': 'View purchase requisitions.',
     'pr.prepare': 'Create, edit, and submit purchase requisitions.',
-    'pr.approve': 'Act on purchase requisition approval steps assigned to them.',
+    'pr.approve':
+        'Act on purchase requisition approval steps assigned to them.',
     'pr.cancel': 'Cancel a purchase requisition.',
     'pr.finalize': 'Upload and bind the final signed PR document.',
     'pr.omit': 'Omit line items from an approved purchase requisition.',
@@ -22,7 +23,8 @@ const PERMISSION_DESCRIPTIONS: Record<string, string> = {
     'rr.cancel': 'Cancel a receiving report.',
     'prf.view': 'View payment request forms.',
     'prf.prepare': 'Create, edit, and submit payment request forms.',
-    'prf.approve': 'Act on payment request form approval steps assigned to them.',
+    'prf.approve':
+        'Act on payment request form approval steps assigned to them.',
     'prf.cancel': 'Cancel a payment request form.',
     'workflow.reassign': 'Reassign a pending approval step to another user.',
     'config.suppliers.manage': 'Manage the supplier list.',

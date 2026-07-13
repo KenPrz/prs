@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Settings\FinanceSettings;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -38,6 +39,9 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'finance' => [
+                'currency_symbol' => app(FinanceSettings::class)->currency_symbol,
+            ],
             'auth' => [
                 'user' => $request->user(),
                 'is_super_admin' => $request->user()?->hasAnyRole(['Super Admin', 'admin']) ?? false,

@@ -12,17 +12,17 @@ export default function AuthSplitLayout({
 
     return (
         <div className="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
-            <div className="relative hidden h-full flex-col bg-linear-to-br from-teal-800 to-teal-950 p-10 text-white lg:flex dark:border-r dark:border-border">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(45,216,181,0.15),_transparent_60%)]" />
+            {/* Carbon inverse panel: flat charcoal, no gradients */}
+            <div className="relative hidden h-full flex-col bg-sidebar p-10 text-sidebar-foreground lg:flex dark:border-r dark:border-sidebar-border">
                 <Link
                     href={home()}
-                    className="relative z-20 flex items-center text-lg font-medium"
+                    className="relative z-20 flex items-center text-lg font-normal"
                 >
-                    <AppLogoIcon className="mr-2 size-8 fill-current text-white" />
+                    <AppLogoIcon className="mr-2 size-8 fill-current text-primary" />
                     {name}
                 </Link>
                 <div className="relative z-20 mt-auto">
-                    <p className="text-sm font-medium tracking-widest text-teal-200/60 uppercase">
+                    <p className="text-sm font-normal text-sidebar-foreground/60">
                         Procurement Request System
                     </p>
                 </div>

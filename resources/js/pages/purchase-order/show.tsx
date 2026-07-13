@@ -23,6 +23,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useCurrency } from '@/hooks/use-currency';
 import AppLayout from '@/layouts/app-layout';
 import { formatPHP } from '@/lib/format-currency';
 import { priceBreakdown } from '@/lib/price-type';
@@ -66,6 +67,7 @@ export default function PurchaseOrderShow({
     canCancelWorkflow?: boolean;
     attachments?: DocumentAttachmentRecord[];
 }) {
+    const { symbol } = useCurrency();
     const [submitting, setSubmitting] = useState(false);
     const [deciding, setDeciding] = useState(false);
     const [decideComment, setDecideComment] = useState('');
@@ -427,7 +429,7 @@ export default function PurchaseOrderShow({
                                                                     '—'}
                                                             </td>
                                                             <td className="py-3 text-right">
-                                                                ₱
+                                                                {symbol}
                                                                 {Number(
                                                                     item.price,
                                                                 ).toLocaleString(
@@ -438,7 +440,7 @@ export default function PurchaseOrderShow({
                                                                 )}
                                                             </td>
                                                             <td className="py-3 text-right font-medium">
-                                                                ₱
+                                                                {symbol}
                                                                 {rowTotal.toLocaleString(
                                                                     'en-PH',
                                                                     {
@@ -466,7 +468,7 @@ export default function PurchaseOrderShow({
                                                     Grand Total:
                                                 </td>
                                                 <td className="py-4 text-right text-base font-bold">
-                                                    ₱
+                                                    {symbol}
                                                     {grossTotal.toLocaleString(
                                                         'en-PH',
                                                         {
@@ -650,7 +652,7 @@ export default function PurchaseOrderShow({
                                             Net Amount
                                         </span>
                                         <span className="font-medium">
-                                            {formatPHP(netTotal)}
+                                            {formatPHP(netTotal, symbol)}
                                         </span>
                                     </div>
                                     <div className="flex justify-between border-b border-border/50 py-1 text-sm">
@@ -658,7 +660,7 @@ export default function PurchaseOrderShow({
                                             VAT Amount
                                         </span>
                                         <span className="font-medium">
-                                            {formatPHP(vatTotal)}
+                                            {formatPHP(vatTotal, symbol)}
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-between pt-2">
@@ -666,7 +668,7 @@ export default function PurchaseOrderShow({
                                             Total Amount
                                         </span>
                                         <span className="text-lg font-bold">
-                                            {formatPHP(grossTotal)}
+                                            {formatPHP(grossTotal, symbol)}
                                         </span>
                                     </div>
                                 </div>

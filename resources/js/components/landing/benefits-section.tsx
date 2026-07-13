@@ -50,7 +50,7 @@ export function BenefitsSection() {
                     {personas.map((persona) => (
                         <div
                             key={persona.role}
-                            className="rounded-lg border border-border bg-card p-6 shadow-sm"
+                            className="rounded-lg border border-border bg-card p-6"
                         >
                             <h3 className="text-base font-semibold">
                                 {persona.role}

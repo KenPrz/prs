@@ -7,7 +7,7 @@ export function CtaSection() {
     return (
         <section className="bg-primary py-24 md:py-32">
             <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
-                <h2 className="text-3xl font-semibold tracking-tight text-primary-foreground md:text-4xl">
+                <h2 className="text-3xl font-light tracking-tight text-primary-foreground md:text-4xl">
                     Ready to modernize
                     <br />
                     your procurement process?

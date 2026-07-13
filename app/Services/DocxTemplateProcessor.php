@@ -6,12 +6,14 @@ use App\Enums\PriceType;
 use App\Enums\PurchaseRequisitionStatus;
 use App\Enums\ReceivingReportStatus;
 use App\Enums\WorkflowStepType;
+use App\Models\CompanyProfile;
 use App\Models\Document;
 use App\Models\PaymentRequestForm;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseRequisition;
 use App\Models\ReceivingReport;
 use App\Models\User;
+use App\Settings\FinanceSettings;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -182,7 +184,7 @@ class DocxTemplateProcessor
                 $billTo->street,
                 trim($billTo->city.', '.$billTo->province),
             ]))
-            : "OpenPRS Trading Corp.\n100 Commerce Avenue\nMakati City";
+            : $this->companyAddressFallback();
 
         $shipToText = $shipTo
             ? implode("\n", array_filter([
@@ -190,7 +192,7 @@ class DocxTemplateProcessor
                 $shipTo->street,
                 trim($shipTo->city.', '.$shipTo->province),
             ]))
-            : "OpenPRS Trading Corp.\n100 Commerce Avenue\nMakati City";
+            : $this->companyAddressFallback();
 
         $deliveryDate = $po->expected_delivery_date
             ? Carbon::parse($po->expected_delivery_date)->format('n/j/Y')
@@ -222,7 +224,7 @@ class DocxTemplateProcessor
             'price_type_label' => $po->price_type->label(),
             'net_amount' => number_format($po->net_total, 2, '.', ','),
             'vat_rate' => match ($po->price_type) {
-                PriceType::VAT_INCLUSIVE, PriceType::VAT_EXCLUSIVE => '12%',
+                PriceType::VAT_INCLUSIVE, PriceType::VAT_EXCLUSIVE => $this->vatRatePercent(),
                 PriceType::NON_VAT, PriceType::ZERO_VAT => '0%',
             },
             'vat_amount' => number_format($po->vat_total, 2, '.', ','),
@@ -353,6 +355,30 @@ class DocxTemplateProcessor
             ->filter()
             ->unique(fn ($actor) => $actor->id)
             ->values();
+    }
+
+    /** The configured VAT rate as a display string, e.g. "12%". */
+    private function vatRatePercent(): string
+    {
+        $percent = number_format(app(FinanceSettings::class)->vat_rate * 100, 2, '.', '');
+
+        return rtrim(rtrim($percent, '0'), '.').'%';
+    }
+
+    /** Bill-to / ship-to fallback: the company's own name and head-office address. */
+    private function companyAddressFallback(): string
+    {
+        $profile = CompanyProfile::with('address')->first();
+
+        if ($profile === null) {
+            return '—';
+        }
+
+        return implode("\n", array_filter([
+            $profile->name,
+            $profile->address?->street,
+            trim(($profile->address?->city ?? '').', '.($profile->address?->province ?? ''), ', '),
+        ])) ?: '—';
     }
 
     private function load(Document $document): string

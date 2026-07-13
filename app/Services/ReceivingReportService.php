@@ -8,6 +8,7 @@ use App\Events\Procurement\PurchaseOrderFullyReceived;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseOrderItem;
 use App\Models\ReceivingReport;
+use App\Settings\GeneralSettings;
 use App\Support\AttachmentSync;
 use App\Support\ProcurementSearch;
 use Illuminate\Http\UploadedFile;
@@ -27,7 +28,7 @@ class ReceivingReportService
      */
     public function list(array $filters): LengthAwarePaginator
     {
-        $perPage = max(1, min((int) ($filters['per_page'] ?? 10), 100));
+        $perPage = max(1, min((int) ($filters['per_page'] ?? app(GeneralSettings::class)->records_per_page), 100));
 
         return ReceivingReport::query()
             ->orderByDesc('created_at')

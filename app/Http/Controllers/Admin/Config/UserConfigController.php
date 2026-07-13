@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Config;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\User;
+use App\Settings\GeneralSettings;
 use App\Support\UserDeletionGuard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class UserConfigController extends Controller
         }
 
         return Inertia::render('admin/config/users/index', [
-            'users' => $query->orderBy('name')->paginate($request->input('per_page', 10))->withQueryString(),
+            'users' => $query->orderBy('name')->paginate($request->input('per_page', app(GeneralSettings::class)->records_per_page))->withQueryString(),
         ]);
     }
 

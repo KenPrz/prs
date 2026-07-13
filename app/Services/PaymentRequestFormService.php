@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\PaymentRequestForm;
+use App\Settings\GeneralSettings;
 use App\Support\AttachmentSync;
 use App\Support\ProcurementSearch;
 use Illuminate\Http\UploadedFile;
@@ -19,7 +20,7 @@ class PaymentRequestFormService
      */
     public function list(array $filters): LengthAwarePaginator
     {
-        $perPage = max(1, min((int) ($filters['per_page'] ?? 10), 100));
+        $perPage = max(1, min((int) ($filters['per_page'] ?? app(GeneralSettings::class)->records_per_page), 100));
 
         return PaymentRequestForm::query()
             ->orderByDesc('created_at')

@@ -22,11 +22,11 @@
     {{-- Inline background to prevent flash --}}
     <style>
         html {
-            background-color: oklch(0.975 0.005 85);
+            background-color: #ffffff;
         }
 
         html.dark {
-            background-color: oklch(0.16 0.01 250);
+            background-color: #161616;
         }
     </style>
 
@@ -40,8 +40,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    {{-- Inter — enterprise-grade typography --}}
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    {{-- IBM Plex Sans — Carbon Design System typeface --}}
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     @viteReactRefresh
     @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])

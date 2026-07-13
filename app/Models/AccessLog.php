@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Settings\GeneralSettings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,9 +26,8 @@ class AccessLog extends Model
         return $this->belongsTo(User::class);
     }
 
-    // ponytail: 180-day default, ACCESS_LOG_RETENTION_DAYS overrides.
     public function prunable()
     {
-        return static::where('created_at', '<', now()->subDays(config('access-log.retention_days')));
+        return static::where('created_at', '<', now()->subDays(app(GeneralSettings::class)->access_log_retention_days));
     }
 }

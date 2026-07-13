@@ -27,18 +27,12 @@ function getActionIcon(action: string) {
     switch (action) {
         case 'APPROVE':
         case 'RECEIVE':
-            return (
-                <CheckCircle className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" />
-            );
+            return <CheckCircle className="h-3.5 w-3.5 text-success" />;
         case 'REJECT':
         case 'CANCEL':
-            return (
-                <XCircle className="h-3.5 w-3.5 text-red-600 dark:text-red-400" />
-            );
+            return <XCircle className="h-3.5 w-3.5 text-destructive" />;
         case 'REASSIGN':
-            return (
-                <ShieldAlert className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
-            );
+            return <ShieldAlert className="h-3.5 w-3.5 text-warning" />;
         default:
             return (
                 <UserCircle2 className="h-3.5 w-3.5 text-muted-foreground" />
@@ -50,10 +44,10 @@ function getActionColor(action: string) {
     switch (action) {
         case 'APPROVE':
         case 'RECEIVE':
-            return 'bg-teal-50 text-teal-700 border-teal-200/60 dark:bg-teal-950/30 dark:text-teal-400 dark:border-teal-800/50';
+            return 'border-success/40 bg-success/10 text-success';
         case 'REJECT':
         case 'CANCEL':
-            return 'bg-red-50 text-red-700 border-red-200/60 dark:bg-red-950/30 dark:text-red-400 dark:border-red-800/50';
+            return 'border-destructive/40 bg-destructive/10 text-destructive';
         default:
             return 'bg-muted text-muted-foreground';
     }

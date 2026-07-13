@@ -9,7 +9,7 @@ type Props = {
 export function SectionHeader({ title, subtitle, align = 'center' }: Props) {
     return (
         <div className={cn('space-y-3', align === 'center' && 'text-center')}>
-            <h2 className="text-3xl font-semibold tracking-tight">{title}</h2>
+            <h2 className="text-3xl font-light tracking-tight">{title}</h2>
             {subtitle && (
                 <p
                     className={cn(

@@ -41,7 +41,7 @@ export function WorkflowSection() {
                 <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {steps.map((step) => (
                         <div key={step.number} className="space-y-3">
-                            <span className="text-5xl font-bold text-border">
+                            <span className="text-5xl font-light text-border">
                                 {step.number}
                             </span>
                             <h3 className="text-base font-semibold">
@@ -55,7 +55,7 @@ export function WorkflowSection() {
                 </div>
 
                 {/* PRF callout */}
-                <div className="mt-10 rounded-lg border border-border bg-card p-6 shadow-sm">
+                <div className="mt-10 rounded-lg border border-border bg-card p-6">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-6">
                         <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 font-mono text-xs font-medium">
                             PRF
@@ -66,8 +66,8 @@ export function WorkflowSection() {
                             </h3>
                             <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                                 For recurring billing and standing payment
-                                obligations, OpenPRS provides a separate
-                                Payment Request Form workflow. It has its own
+                                obligations, OpenPRS provides a separate Payment
+                                Request Form workflow. It has its own
                                 configurable approval chain and audit trail —
                                 independent of the PR → PO → RR purchasing
                                 process.

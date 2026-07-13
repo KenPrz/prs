@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Config;
 use App\Http\Controllers\Controller;
 use App\Models\AccessLog;
 use App\Models\User;
+use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -40,7 +41,7 @@ class AccessLogConfigController extends Controller
         }
 
         return Inertia::render('admin/config/access-logs/index', [
-            'logs' => $query->paginate($request->input('per_page', 20))->withQueryString(),
+            'logs' => $query->paginate($request->input('per_page', app(GeneralSettings::class)->records_per_page))->withQueryString(),
             'filters' => $request->only(['user_id', 'event', 'from', 'to']),
             'users' => User::query()->orderBy('name')->get(['id', 'name']),
         ]);

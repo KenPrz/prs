@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Config\DepartmentConfigController;
 use App\Http\Controllers\Admin\Config\DocumentConfigController;
 use App\Http\Controllers\Admin\Config\ItemUnitConfigController;
 use App\Http\Controllers\Admin\Config\RoleConfigController;
+use App\Http\Controllers\Admin\Config\SettingsConfigController;
 use App\Http\Controllers\Admin\Config\SupplierConfigController;
 use App\Http\Controllers\Admin\Config\UserConfigController;
 use App\Http\Controllers\Admin\Config\WorkflowConfigController;
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'verified', 'config.access'])
                 'config.item_units.manage' => 'admin.config.item-units.index',
                 'config.documents.manage' => 'admin.config.documents.index',
                 'config.company_profile.manage' => 'admin.config.company-profile.edit',
+                'config.settings.manage' => 'admin.config.settings.edit',
                 'access.users.manage' => 'admin.config.users.index',
                 'access.roles.manage' => 'admin.config.roles.index',
                 'access.logs.view' => 'admin.config.access-logs.index',
@@ -59,5 +61,10 @@ Route::middleware(['auth', 'verified', 'config.access'])
         Route::middleware('can:config.company_profile.manage')->group(function () {
             Route::get('company-profile', [CompanyProfileConfigController::class, 'edit'])->name('company-profile.edit');
             Route::put('company-profile', [CompanyProfileConfigController::class, 'update'])->name('company-profile.update');
+        });
+
+        Route::middleware('can:config.settings.manage')->group(function () {
+            Route::get('settings', [SettingsConfigController::class, 'edit'])->name('settings.edit');
+            Route::put('settings', [SettingsConfigController::class, 'update'])->name('settings.update');
         });
     });

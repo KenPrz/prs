@@ -17,6 +17,7 @@ import type { ComboboxOption } from '@/components/ui/combobox';
 import { DatePicker } from '@/components/ui/date-picker';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useCurrency } from '@/hooks/use-currency';
 import AppLayout from '@/layouts/app-layout';
 import { priceBreakdown } from '@/lib/price-type';
 import * as purchaseOrders from '@/routes/purchase-orders';
@@ -82,6 +83,7 @@ export default function PurchaseOrderCreate({
     priceTypes: string[];
     addresses: Address[];
 }) {
+    const { symbol } = useCurrency();
     const prItems = purchaseRequisition?.line_items ?? [];
 
     const [allocations, setAllocations] = useState<AllocationItem[]>(
@@ -764,7 +766,7 @@ export default function PurchaseOrderCreate({
                                                                     />
                                                                 </td>
                                                                 <td className="py-4 text-right font-medium">
-                                                                    ₱
+                                                                    {symbol}
                                                                     {rowTotal.toLocaleString(
                                                                         'en-PH',
                                                                         {
@@ -799,7 +801,7 @@ export default function PurchaseOrderCreate({
                                                         Grand Total:
                                                     </td>
                                                     <td className="py-5 text-right text-base font-bold">
-                                                        ₱
+                                                        {symbol}
                                                         {grossTotal.toLocaleString(
                                                             'en-PH',
                                                             {
@@ -879,7 +881,7 @@ export default function PurchaseOrderCreate({
                                             Net Amount
                                         </span>
                                         <span className="font-medium">
-                                            ₱
+                                            {symbol}
                                             {netTotal.toLocaleString('en-PH', {
                                                 minimumFractionDigits: 2,
                                                 maximumFractionDigits: 2,
@@ -891,7 +893,7 @@ export default function PurchaseOrderCreate({
                                             VAT Amount
                                         </span>
                                         <span className="font-medium">
-                                            ₱
+                                            {symbol}
                                             {vatTotal.toLocaleString('en-PH', {
                                                 minimumFractionDigits: 2,
                                                 maximumFractionDigits: 2,
@@ -903,7 +905,7 @@ export default function PurchaseOrderCreate({
                                             Total Amount
                                         </span>
                                         <span className="text-lg font-bold">
-                                            ₱
+                                            {symbol}
                                             {grossTotal.toLocaleString(
                                                 'en-PH',
                                                 {

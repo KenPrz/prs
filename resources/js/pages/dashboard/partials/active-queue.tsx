@@ -16,10 +16,10 @@ export interface QueueItem {
 }
 
 const DOC_TYPE_STYLES: Record<string, string> = {
-    PR: 'bg-blue-50 text-blue-700 border-blue-200/60 dark:bg-blue-950/30 dark:text-blue-400 dark:border-blue-800/50',
-    PO: 'bg-violet-50 text-violet-700 border-violet-200/60 dark:bg-violet-950/30 dark:text-violet-400 dark:border-violet-800/50',
-    RR: 'bg-amber-50 text-amber-700 border-amber-200/60 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800/50',
-    PRF: 'bg-teal-50 text-teal-700 border-teal-200/60 dark:bg-teal-950/30 dark:text-teal-400 dark:border-teal-800/50',
+    PR: 'border-chart-1/30 bg-chart-1/10 text-chart-1',
+    PO: 'border-chart-2/30 bg-chart-2/10 text-chart-2',
+    RR: 'border-chart-3/30 bg-chart-3/10 text-chart-3',
+    PRF: 'border-chart-4/30 bg-chart-4/10 text-chart-4',
 };
 
 export function ActiveQueue({ items }: { items: QueueItem[] }) {

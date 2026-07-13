@@ -65,7 +65,7 @@ function ProcurementFlowPreview() {
             {/* Main procurement chain: PR → PO → RR */}
             {procurementChain.map((step, i) => (
                 <div key={step.ref}>
-                    <div className="rounded-lg border border-border bg-card p-4 shadow-sm">
+                    <div className="rounded-lg border border-border bg-card p-4">
                         <div className="mb-2 flex items-start justify-between gap-2">
                             <span className="text-xs text-muted-foreground">
                                 {step.type}
@@ -90,7 +90,7 @@ function ProcurementFlowPreview() {
                 <p className="mb-2 text-xs font-medium tracking-wider text-muted-foreground uppercase">
                     Also available
                 </p>
-                <div className="rounded-lg border border-border bg-card p-4 opacity-75 shadow-sm">
+                <div className="rounded-lg border border-border bg-card p-4 opacity-75">
                     <div className="mb-2 flex items-start justify-between gap-2">
                         <span className="text-xs text-muted-foreground">
                             Payment Request Form
@@ -116,14 +116,14 @@ export function HeroSection({ user }: Props) {
                         <p className="text-xs font-medium tracking-widest text-primary uppercase">
                             Procurement Workflow Platform
                         </p>
-                        <h1 className="text-4xl leading-tight font-semibold tracking-tight md:text-5xl">
+                        <h1 className="text-4xl leading-tight font-light tracking-tight md:text-6xl">
                             Procurement Without
                             <br />
                             the Paper Trail
                         </h1>
                         <p className="max-w-md text-base leading-relaxed text-muted-foreground">
-                            OpenPRS digitizes your entire purchasing process
-                            — from requisition to payment — with structured
+                            OpenPRS digitizes your entire purchasing process —
+                            from requisition to payment — with structured
                             approval workflows and a complete audit trail at
                             every step.
                         </p>

@@ -9,12 +9,16 @@
 
 @theme {
     --font-sans:
-        'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        'IBM Plex Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui,
+        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
 
-    --radius-lg: var(--radius);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-sm: calc(var(--radius) - 4px);
+    /* Carbon flat geometry: every radius token is 0 so rounded-sm/md/lg/xl
+       utilities all render square. rounded-full stays for pills/avatars. */
+    --radius-xl: 0px;
+    --radius-lg: 0px;
+    --radius-md: 0px;
+    --radius-sm: 0px;
 
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -67,132 +71,124 @@
 }
 
 /*
- * Brand Palette (Light Mode)
+ * IBM Carbon palette (per DESIGN.md)
  * ────────────────────────────────────
- * Warm neutrals (off-white, stone)  for backgrounds
- * Deep teal (#006e6e family)         for brand primary
- * Muted greens                       for accents
- * Dark teal sidebar                  for brand anchor
+ * White canvas · #161616 ink · IBM Blue #0f62fe single accent
+ * #f4f4f4 surfaces · #e0e0e0 hairlines · charcoal sidebar anchor
  */
 :root {
-    /* Surfaces — warm off-white instead of pure white */
-    --background: oklch(0.975 0.005 85);
-    --foreground: oklch(0.18 0.02 250);
+    --background: #ffffff;
+    --foreground: #161616;
 
-    /* Cards — slightly elevated surface */
-    --card: oklch(0.993 0.002 85);
-    --card-foreground: oklch(0.18 0.02 250);
+    --card: #ffffff;
+    --card-foreground: #161616;
 
-    /* Popovers / Dropdowns */
-    --popover: oklch(0.995 0.002 85);
-    --popover-foreground: oklch(0.18 0.02 250);
+    --popover: #ffffff;
+    --popover-foreground: #161616;
 
-    /* Brand Primary — deep teal */
-    --primary: oklch(0.35 0.08 175);
-    --primary-foreground: oklch(0.985 0 0);
+    /* IBM Blue — the single brand accent */
+    --primary: #0f62fe;
+    --primary-foreground: #ffffff;
 
-    /* Secondary — warm stone */
-    --secondary: oklch(0.945 0.008 85);
-    --secondary-foreground: oklch(0.22 0.02 250);
+    --secondary: #f4f4f4;
+    --secondary-foreground: #161616;
 
-    /* Muted — warm neutral */
-    --muted: oklch(0.935 0.008 85);
-    --muted-foreground: oklch(0.48 0.01 250);
+    --muted: #f4f4f4;
+    --muted-foreground: #525252;
 
-    /* Accent — teal-tinted for brand cohesion */
-    --accent: oklch(0.94 0.018 175);
-    --accent-foreground: oklch(0.22 0.02 250);
+    --accent: #f4f4f4;
+    --accent-foreground: #161616;
 
-    /* Destructive */
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
+    /* Carbon semantics: red-60 / green-50 / yellow-30 */
+    --destructive: #da1e28;
+    --destructive-foreground: #ffffff;
 
-    /* Success — forest green, brand-adjacent */
-    --success: oklch(0.42 0.1 165);
-    --success-foreground: oklch(0.985 0 0);
+    --success: #24a148;
+    --success-foreground: #ffffff;
 
-    /* Warning — warm amber */
-    --warning: oklch(0.7 0.14 75);
-    --warning-foreground: oklch(0.18 0.02 250);
+    --warning: #f1c21b;
+    --warning-foreground: #161616;
 
-    /* Borders — warm, softer */
-    --border: oklch(0.905 0.008 85);
-    --input: oklch(0.905 0.008 85);
-    --ring: oklch(0.55 0.1 175);
+    /* 1px hairlines carry hierarchy; no shadows */
+    --border: #e0e0e0;
+    --input: #e0e0e0;
+    --ring: #0f62fe;
 
-    /* Charts — brand-harmonious */
-    --chart-1: oklch(0.5 0.12 175);
-    --chart-2: oklch(0.6 0.1 145);
-    --chart-3: oklch(0.45 0.06 250);
-    --chart-4: oklch(0.7 0.14 85);
-    --chart-5: oklch(0.65 0.18 30);
+    /* Carbon dataviz categorical palette */
+    --chart-1: #0f62fe;
+    --chart-2: #6929c4;
+    --chart-3: #005d5d;
+    --chart-4: #9f1853;
+    --chart-5: #fa4d56;
 
-    --radius: 0.625rem;
+    --radius: 0px;
 
-    /* Sidebar — deep teal brand anchor */
-    --sidebar: oklch(0.22 0.05 180);
-    --sidebar-foreground: oklch(0.92 0.01 175);
-    --sidebar-primary: oklch(0.7 0.13 175);
-    --sidebar-primary-foreground: oklch(0.99 0 0);
-    --sidebar-accent: oklch(0.28 0.04 180);
-    --sidebar-accent-foreground: oklch(0.95 0.01 175);
-    --sidebar-border: oklch(0.3 0.04 180);
-    --sidebar-ring: oklch(0.55 0.1 175);
+    /* Sidebar — charcoal inverse-canvas anchor (both modes) */
+    --sidebar: #161616;
+    --sidebar-foreground: #f4f4f4;
+    --sidebar-primary: #0f62fe;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #262626;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #393939;
+    --sidebar-ring: #0f62fe;
 }
 
 /*
- * Dark Mode — warm dark surfaces, teal accents
+ * Dark mode — Carbon Gray-100 theme
  */
 .dark {
-    --background: oklch(0.16 0.01 250);
-    --foreground: oklch(0.93 0.005 85);
+    --background: #161616;
+    --foreground: #f4f4f4;
 
-    --card: oklch(0.19 0.01 250);
-    --card-foreground: oklch(0.93 0.005 85);
+    --card: #262626;
+    --card-foreground: #f4f4f4;
 
-    --popover: oklch(0.19 0.01 250);
-    --popover-foreground: oklch(0.93 0.005 85);
+    --popover: #262626;
+    --popover-foreground: #f4f4f4;
 
-    --primary: oklch(0.65 0.12 175);
-    --primary-foreground: oklch(0.15 0.02 250);
+    --primary: #0f62fe;
+    --primary-foreground: #ffffff;
 
-    --secondary: oklch(0.24 0.01 250);
-    --secondary-foreground: oklch(0.9 0.005 85);
+    --secondary: #262626;
+    --secondary-foreground: #f4f4f4;
 
-    --muted: oklch(0.24 0.01 250);
-    --muted-foreground: oklch(0.65 0.01 85);
+    --muted: #262626;
+    --muted-foreground: #c6c6c6;
 
-    --accent: oklch(0.26 0.025 175);
-    --accent-foreground: oklch(0.92 0.005 85);
+    --accent: #333333;
+    --accent-foreground: #f4f4f4;
 
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
+    /* Carbon dark semantics: red-50 / green-40 / yellow-30 */
+    --destructive: #fa4d56;
+    --destructive-foreground: #ffffff;
 
-    --success: oklch(0.55 0.13 165);
-    --success-foreground: oklch(0.12 0.02 165);
+    --success: #42be65;
+    --success-foreground: #161616;
 
-    --warning: oklch(0.65 0.16 75);
-    --warning-foreground: oklch(0.18 0.04 75);
+    --warning: #f1c21b;
+    --warning-foreground: #161616;
 
-    --border: oklch(0.28 0.01 250);
-    --input: oklch(0.28 0.01 250);
-    --ring: oklch(0.55 0.1 175);
+    --border: #393939;
+    --input: #393939;
+    /* blue-40 keeps the focus ring visible on charcoal */
+    --ring: #78a9ff;
 
-    --chart-1: oklch(0.55 0.15 175);
-    --chart-2: oklch(0.6 0.12 145);
-    --chart-3: oklch(0.5 0.08 250);
-    --chart-4: oklch(0.65 0.16 85);
-    --chart-5: oklch(0.6 0.2 30);
+    --chart-1: #4589ff;
+    --chart-2: #8a3ffc;
+    --chart-3: #009d9a;
+    --chart-4: #ee5396;
+    --chart-5: #fa4d56;
 
-    /* Sidebar — even deeper in dark mode */
-    --sidebar: oklch(0.14 0.03 180);
-    --sidebar-foreground: oklch(0.88 0.01 175);
-    --sidebar-primary: oklch(0.65 0.12 175);
-    --sidebar-primary-foreground: oklch(0.14 0.02 250);
-    --sidebar-accent: oklch(0.2 0.03 180);
-    --sidebar-accent-foreground: oklch(0.92 0.01 175);
-    --sidebar-border: oklch(0.24 0.03 180);
-    --sidebar-ring: oklch(0.55 0.1 175);
+    /* Sidebar — same charcoal anchor as light mode */
+    --sidebar: #161616;
+    --sidebar-foreground: #f4f4f4;
+    --sidebar-primary: #0f62fe;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #262626;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #393939;
+    --sidebar-ring: #78a9ff;
 }
 
 @layer base {
@@ -202,6 +198,8 @@
 
     body {
         @apply bg-background text-foreground antialiased;
+        /* Carbon body tracking — a precision detail of the type voice */
+        letter-spacing: 0.16px;
     }
 
     /* Smooth transitions for interactive elements */

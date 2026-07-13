@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Config;
 use App\Http\Controllers\Controller;
 use App\Models\PaymentRequestForm;
 use App\Models\Supplier;
+use App\Settings\GeneralSettings;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -23,7 +24,7 @@ class SupplierConfigController extends Controller
                     ->orWhereLike('email', "%{$search}%");
             })
             ->orderBy('name')
-            ->paginate($request->integer('per_page', 10))
+            ->paginate($request->integer('per_page', app(GeneralSettings::class)->records_per_page))
             ->withQueryString();
 
         return Inertia::render('admin/config/suppliers/index', [

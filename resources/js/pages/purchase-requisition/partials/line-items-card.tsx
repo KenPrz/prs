@@ -11,6 +11,7 @@ import {
 import { Combobox } from '@/components/ui/combobox';
 import type { ComboboxOption } from '@/components/ui/combobox';
 import { Input } from '@/components/ui/input';
+import { useCurrency } from '@/hooks/use-currency';
 import { formatPHP } from '@/lib/format-currency';
 import type { LineItemData } from '../create';
 
@@ -41,6 +42,7 @@ export function LineItemsCard({
     renderRowAction,
     rowMuted,
 }: LineItemsCardProps) {
+    const { symbol } = useCurrency();
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 100;
 
@@ -287,7 +289,7 @@ export function LineItemsCard({
                                             )}
                                         </td>
                                         <td className="py-4 text-right font-medium">
-                                            {formatPHP(rowTotal)}
+                                            {formatPHP(rowTotal, symbol)}
                                         </td>
                                         {!isReadOnly && (
                                             <td className="py-4 text-right">
@@ -325,7 +327,7 @@ export function LineItemsCard({
                                     Grand Total:
                                 </td>
                                 <td className="py-4 text-right text-base font-bold text-foreground">
-                                    {formatPHP(grandTotal)}
+                                    {formatPHP(grandTotal, symbol)}
                                 </td>
                                 {!isReadOnly && <td></td>}
                                 {renderRowAction && <td></td>}

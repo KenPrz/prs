@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Config;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document;
+use App\Settings\GeneralSettings;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -29,7 +30,7 @@ class DocumentConfigController extends Controller
                 $query->whereLike('resource_class', "%{$search}%");
             })
             ->orderByDesc('updated_at')
-            ->paginate($request->integer('per_page', 10))
+            ->paginate($request->integer('per_page', app(GeneralSettings::class)->records_per_page))
             ->withQueryString();
 
         $documents->getCollection()->transform(

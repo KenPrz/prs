@@ -2,6 +2,8 @@
 
 namespace App\Enums;
 
+use App\Settings\FinanceSettings;
+
 enum PriceType: string
 {
     /**
@@ -27,10 +29,12 @@ enum PriceType: string
     /**
      * Convert the given price to NET (VAT-exclusive).
      *
-     * @param  float  $vatRate  (e.g., 0.12 for 12%)
+     * @param  float|null  $vatRate  (e.g., 0.12 for 12%; defaults to the configured rate)
      */
-    public function toNet(float $price, float $vatRate = 0.12): float
+    public function toNet(float $price, ?float $vatRate = null): float
     {
+        $vatRate ??= self::configuredVatRate();
+
         return match ($this) {
             self::VAT_INCLUSIVE => $price / (1 + $vatRate),
             self::VAT_EXCLUSIVE => $price,
@@ -42,10 +46,12 @@ enum PriceType: string
     /**
      * Convert the given price to GROSS (VAT-inclusive).
      *
-     * @param  float  $vatRate  (e.g., 0.12 for 12%)
+     * @param  float|null  $vatRate  (e.g., 0.12 for 12%; defaults to the configured rate)
      */
-    public function toGross(float $price, float $vatRate = 0.12): float
+    public function toGross(float $price, ?float $vatRate = null): float
     {
+        $vatRate ??= self::configuredVatRate();
+
         return match ($this) {
             self::VAT_INCLUSIVE => $price,
             self::VAT_EXCLUSIVE => $price * (1 + $vatRate),
@@ -57,8 +63,10 @@ enum PriceType: string
     /**
      * Extract VAT amount from the given price.
      */
-    public function vatAmount(float $price, float $vatRate = 0.12): float
+    public function vatAmount(float $price, ?float $vatRate = null): float
     {
+        $vatRate ??= self::configuredVatRate();
+
         return match ($this) {
             self::VAT_INCLUSIVE => $price - ($price / (1 + $vatRate)),
             self::VAT_EXCLUSIVE => $price * $vatRate,
@@ -78,5 +86,10 @@ enum PriceType: string
             self::NON_VAT => 'Non-VAT',
             self::ZERO_VAT => 'Zero VAT (0%)',
         };
+    }
+
+    public static function configuredVatRate(): float
+    {
+        return app(FinanceSettings::class)->vat_rate;
     }
 }

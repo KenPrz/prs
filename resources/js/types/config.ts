@@ -65,6 +65,13 @@ export type CompanyProfileConfig = {
     address?: AddressConfig | null;
 };
 
+export type SystemSettingsConfig = {
+    vat_rate_percent: number;
+    currency_symbol: string;
+    records_per_page: number;
+    access_log_retention_days: number;
+};
+
 export type DepartmentConfig = {
     id: number;
     name: string;

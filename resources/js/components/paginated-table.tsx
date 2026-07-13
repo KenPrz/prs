@@ -88,7 +88,7 @@ export default function PaginatedTable<T>({
 
     return (
         <div className="space-y-3">
-            <div className="overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm">
+            <div className="overflow-hidden rounded-none border border-border bg-card">
                 <table className="w-full text-sm">
                     <thead className="bg-muted/40 text-muted-foreground">
                         <tr className="border-b border-border/50">

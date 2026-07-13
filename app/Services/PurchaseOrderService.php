@@ -7,6 +7,7 @@ use App\Enums\PurchaseRequisitionStatus;
 use App\Models\LineItem;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseRequisition;
+use App\Settings\GeneralSettings;
 use App\Support\AttachmentSync;
 use App\Support\ProcurementSearch;
 use Illuminate\Http\UploadedFile;
@@ -24,7 +25,7 @@ class PurchaseOrderService
      */
     public function list(array $filters): LengthAwarePaginator
     {
-        $perPage = max(1, min((int) ($filters['per_page'] ?? 10), 100));
+        $perPage = max(1, min((int) ($filters['per_page'] ?? app(GeneralSettings::class)->records_per_page), 100));
 
         return PurchaseOrder::query()
             ->orderByDesc('created_at')

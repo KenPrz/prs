@@ -7,6 +7,7 @@ import {
     Ruler,
     ScrollText,
     Shield,
+    SlidersHorizontal,
     Truck,
     Users,
 } from 'lucide-react';
@@ -41,6 +42,12 @@ const navGroups: NavGroup[] = [
     {
         label: 'System Settings',
         items: [
+            {
+                title: 'System Settings',
+                href: '/admin/config/settings',
+                icon: SlidersHorizontal,
+                permission: 'config.settings.manage',
+            },
             {
                 title: 'Company Profile',
                 href: '/admin/config/company-profile',

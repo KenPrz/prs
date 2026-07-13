@@ -21,6 +21,7 @@ class EnsureConfigAccess
         'config.item_units.manage',
         'config.documents.manage',
         'config.company_profile.manage',
+        'config.settings.manage',
         'config.workflows.manage',
         'access.users.manage',
         'access.roles.manage',

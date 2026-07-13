@@ -2,6 +2,7 @@
 
 namespace App\Concerns;
 
+use App\Models\User;
 use App\Models\WorkflowDefinition;
 use App\Models\WorkflowInstance;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -45,13 +46,13 @@ trait InteractsWithWorkflow
     /**
      * @return array<int, string>
      */
-    public function workflowStartErrors(\App\Models\WorkflowDefinition $definition): array
+    public function workflowStartErrors(WorkflowDefinition $definition): array
     {
         return [];
     }
 
     /**
-     * @return Collection<int, \App\Models\User>
+     * @return Collection<int, User>
      */
     public function resolveDepartmentHeads(): Collection
     {
@@ -59,7 +60,7 @@ trait InteractsWithWorkflow
     }
 
     /**
-     * @return Collection<int, \App\Models\User>
+     * @return Collection<int, User>
      */
     public function resolveReceivers(): Collection
     {

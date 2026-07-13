@@ -3,6 +3,7 @@
 namespace App\Contracts;
 
 use App\Enums\WorkflowInstanceStatus;
+use App\Models\User;
 use App\Models\WorkflowDefinition;
 use App\Models\WorkflowInstance;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,14 +28,14 @@ interface WorkflowSubject
     /**
      * Users who are the heads of this subject's tagged departments.
      *
-     * @return Collection<int, \App\Models\User>
+     * @return Collection<int, User>
      */
     public function resolveDepartmentHeads(): Collection;
 
     /**
      * Users designated to receive/acknowledge this subject.
      *
-     * @return Collection<int, \App\Models\User>
+     * @return Collection<int, User>
      */
     public function resolveReceivers(): Collection;
 

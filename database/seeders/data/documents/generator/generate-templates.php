@@ -11,13 +11,13 @@
  * word/media/sig_{key}.png inside the zip — the exact paths
  * app/Services/DocxSignatureStamper.php overwrites at render time.
  */
-
 error_reporting(E_ALL & ~E_DEPRECATED); // PHPWord 1.4 is noisy on PHP 8.5
 
 require __DIR__.'/../../../../../vendor/autoload.php';
 
 use PhpOffice\PhpWord\Element\Cell;
 use PhpOffice\PhpWord\Element\Section;
+use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Media;
 use PhpOffice\PhpWord\PhpWord;
@@ -270,7 +270,7 @@ function newDoc(string $title, string $paper): array
 {
     Media::resetElements();
 
-    $word = new PhpWord();
+    $word = new PhpWord;
     $word->setDefaultFontName('Calibri');
     $word->setDefaultFontSize(9);
     $word->getDocInfo()->setCreator('OpenPRS');
@@ -291,7 +291,7 @@ function titleStyle(): array
     return ['alignment' => Jc::CENTER, 'spaceAfter' => 240];
 }
 
-function grid(Section $section, int $width): \PhpOffice\PhpWord\Element\Table
+function grid(Section $section, int $width): Table
 {
     return $section->addTable([
         'borderSize' => 6,
@@ -325,7 +325,7 @@ function checkbox(string $field, string $value, string $label): string
  * Items table: header row + the two Carbone repeat marker rows.
  * Every column carries its placeholder in both the [i] and [i+1] row.
  *
- * @param array<array{0: string, 1: int, 2: string}> $cols [label, width, key]
+ * @param  array<array{0: string, 1: int, 2: string}>  $cols  [label, width, key]
  */
 function itemsTable(Section $section, int $width, array $cols): void
 {
@@ -388,7 +388,7 @@ function save(PhpWord $word, string $path, array $sigOrder): void
 {
     IOFactory::createWriter($word, 'Word2007')->save($path);
 
-    $zip = new ZipArchive();
+    $zip = new ZipArchive;
     if ($zip->open($path) !== true) {
         throw new RuntimeException("Cannot reopen {$path}");
     }

@@ -17,7 +17,7 @@ class ConditionEvaluator
 {
     /**
      * @param  array<string, mixed>|null  $condition
-     * @return bool  true when the step should run; false when it should be skipped
+     * @return bool true when the step should run; false when it should be skipped
      */
     public function shouldRun(?array $condition, WorkflowSubject $subject): bool
     {

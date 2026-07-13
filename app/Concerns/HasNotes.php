@@ -20,7 +20,6 @@ trait HasNotes
     /**
      * Create a new note for the model.
      *
-     * @param string $content
      *
      * @return Note<static>
      */
@@ -31,10 +30,6 @@ trait HasNotes
 
     /**
      * Update the note for the model.
-     *
-     * @param string $content
-     *
-     * @return bool
      */
     public function updateNote(Note $note, string $content): bool
     {
@@ -43,10 +38,6 @@ trait HasNotes
 
     /**
      * Delete the note for the model.
-     *
-     * @param Note $note
-     *
-     * @return bool
      */
     public function deleteNote(Note $note): bool
     {

@@ -1,7 +1,10 @@
 <?php
 
+use App\Enums\PurchaseOrderStatus;
+use App\Enums\PurchaseRequisitionStatus;
 use App\Models\Signature;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,7 +133,7 @@ test('self-deletion with documents is blocked and keeps the session', function (
 test('a super admin cannot seal a purchase order that is not approved', function () {
     ['po' => $po] = orderedOrder(); // already RELEASED
     $admin = User::factory()->create();
-    $admin->assignRole(Spatie\Permission\Models\Role::firstOrCreate(['name' => 'Super Admin', 'guard_name' => 'web']));
+    $admin->assignRole(Role::firstOrCreate(['name' => 'Super Admin', 'guard_name' => 'web']));
 
     $this->actingAs($admin)
         ->from(route('purchase-orders.show', $po))
@@ -138,13 +141,13 @@ test('a super admin cannot seal a purchase order that is not approved', function
         ->assertRedirect(route('purchase-orders.show', $po))
         ->assertSessionHas('error');
 
-    expect($po->fresh()->status)->toBe(App\Enums\PurchaseOrderStatus::RELEASED);
+    expect($po->fresh()->status)->toBe(PurchaseOrderStatus::RELEASED);
 });
 
 test('the seal button prop is status-honest even for super admins', function () {
     ['po' => $po] = orderedOrder(); // RELEASED — nothing left to seal
     $admin = User::factory()->create();
-    $admin->assignRole(Spatie\Permission\Models\Role::firstOrCreate(['name' => 'Super Admin', 'guard_name' => 'web']));
+    $admin->assignRole(Role::firstOrCreate(['name' => 'Super Admin', 'guard_name' => 'web']));
 
     $this->actingAs($admin)
         ->get(route('purchase-orders.show', $po))
@@ -156,14 +159,14 @@ test('the seal button prop is status-honest even for super admins', function () 
 test('a super admin cannot cancel a draft purchase requisition through the post-approval endpoint', function () {
     $pr = makePr(); // DRAFT
     $admin = User::factory()->create();
-    $admin->assignRole(Spatie\Permission\Models\Role::firstOrCreate(['name' => 'Super Admin', 'guard_name' => 'web']));
+    $admin->assignRole(Role::firstOrCreate(['name' => 'Super Admin', 'guard_name' => 'web']));
 
     $this->actingAs($admin)
         ->from(route('purchase-requisitions.show', $pr))
         ->post(route('purchase-requisitions.cancel', $pr), ['reason' => 'Testing'])
         ->assertSessionHas('error');
 
-    expect($pr->fresh()->status)->toBe(App\Enums\PurchaseRequisitionStatus::DRAFT);
+    expect($pr->fresh()->status)->toBe(PurchaseRequisitionStatus::DRAFT);
 });
 
 // ── Dashboard signature status ─────────────────────────────────────────────
